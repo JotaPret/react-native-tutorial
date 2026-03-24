@@ -1,13 +1,10 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 export default function Card({ image, name, email }) {
     return (
         <View style={styles.card}>
             <View style={styles.logoContainer}>
-                <Image 
-                    source={{ uri: image }}
-                    style={styles.image}
-                />
+
             </View>
             <View style={styles.infoContainer}>
                 <Text style={styles.name}>{name}</Text>
@@ -20,9 +17,9 @@ export default function Card({ image, name, email }) {
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: '#0b140b',
         borderWidth: 1,
-        borderColor: '#e0e0e0',
+        borderColor: '#6dff1a',
         borderRadius: 8,
         padding: 20,
         marginBottom: 16,
@@ -32,7 +29,7 @@ const styles = StyleSheet.create({
         minHeight: 120
     },
     logoContainer: {
-        backgroundColor: '#000000',
+        backgroundColor: '#131e13',
         width: 90,
         height: 90,
         borderRadius: 8,
@@ -53,11 +50,11 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#ecffe4',
         marginBottom: 6
     },
     email: {
         fontSize: 14,
-        color: '#666666'
+        color: '#a8bfa2'
     }
 })
