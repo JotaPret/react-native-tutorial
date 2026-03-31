@@ -1,66 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
 
-const carregadoImage = require('../../assets/carregado.png')
-const descarregadoImage = require('../../assets/descarregado.webp')
 
-export default function Header() {
-  const colorAnim = useRef(new Animated.Value(0)).current
-  const [isCarregado, setIsCarregado] = useState(true)
+  export default function Header(){
 
-  useEffect(() => {
-    const animation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(colorAnim, {
-          toValue: 1,
-          duration: 600,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: false
-        }),
-        Animated.timing(colorAnim, {
-          toValue: 0,
-          duration: 600,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: false
-        })
-      ])
+    const router = useRouter()
+    return (
+        <View style={styles.container}>
+          <View>
+            <FontAwesome style={styles.logo} name="users" size={26} color="#e7612b" />
+            <Text>Omnirolex</Text>
+          </View>
+          <Ionicons name="person-add-outline" size={24} color="white" onPress={() => router.push('/cadastrar')} />
+        </View>
     )
-
-    animation.start()
-
-    return () => {
-      animation.stop()
-    }
-  }, [colorAnim])
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsCarregado((prev) => !prev)
-    }, 1000)
-
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [])
-
-  const animatedColor = colorAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['#21ac33', '#ff2d2d']
-  })
-
-  return (
-    <View style={styles.container}>
-
-        <Image
-          source={isCarregado ? carregadoImage : descarregadoImage}
-          style={styles.logo}
-        />
-
-
-  <Animated.Text style={[styles.title, { color: animatedColor }]}>Omnirolex</Animated.Text>
-
-    </View>
-  )
 }
 
 const styles = StyleSheet.create({
